@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Transactional
+
 @Service
 public class ReportService {
 
@@ -35,7 +35,7 @@ public class ReportService {
     private List<TransactionReport> findTransactionReportForPayee(String cnp, String iban) {
         return accountRepository.findTransactionReportForPayee(cnp, iban);
     }
-
+    @Transactional
     public String findReportForPayer(String cnp) {
         StringBuffer buffer = new StringBuffer();
         List<Account> accountList = accountRepository.findByCnp(cnp);
@@ -49,7 +49,7 @@ public class ReportService {
         }
         return buffer.toString();
     }
-
+    @Transactional
     public String findReportForPayee(String cnp) {
         StringBuffer buffer = new StringBuffer();
         List<Account> accountList = accountRepository.findByCnp(cnp);
